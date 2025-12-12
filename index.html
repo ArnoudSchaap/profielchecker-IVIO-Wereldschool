@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profielkeuze Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="profile-tool-container">
+        <h1>Profielkeuze Tool</h1>
+        <p>Stel hier je vakkenpakket samen.</p>
+
+        <div class="step-container">
+            <label for="level-select">Kies je niveau:</label>
+            <select id="level-select">
+                <option value="">-- Maak een keuze --</option>
+            </select>
+        </div>
+
+        <div id="profile-section" class="hidden">
+            <h3>Kies een profiel:</h3>
+            <div id="profile-buttons" class="button-group"></div>
+        </div>
+
+        <div id="subjects-section" class="hidden">
+            <div class="subject-block">
+                <h4>1. Gemeenschappelijk (Verplicht)</h4>
+                <ul id="common-list" class="subject-list read-only"></ul>
+            </div>
+
+            <div class="subject-block">
+                <h4>2. Profieldeel (Verplicht)</h4>
+                <ul id="mandatory-list" class="subject-list read-only"></ul>
+            </div>
+
+            <div class="subject-block" id="profile-choice-block">
+                <h4 id="profile-choice-title">3. Profiel Keuzevak</h4>
+                <p class="instruction" id="profile-choice-instruction"></p>
+                <div id="profile-choice-list" class="subject-list choice-list"></div>
+            </div>
+
+            <div class="subject-block">
+                <h4 id="exam-choice-title">4. Vrij Examenvak</h4>
+                <p class="instruction" id="exam-choice-instruction"></p>
+                <div id="exam-choice-list" class="subject-list choice-list"></div>
+            </div>
+        </div>
+
+        <div id="summary-section" class="hidden">
+            <h3>Jouw Samenvatting</h3>
+            <div id="summary-content"></div>
+            <button id="print-btn" onclick="window.print()">Print Overzicht</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
