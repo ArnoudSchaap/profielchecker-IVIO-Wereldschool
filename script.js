@@ -8,18 +8,93 @@ let userChoices = {
     examChoice: []
 };
 
-// Start de app: Data inladen
+// DATA.JSON is nu IN de Javascript geplaatst om problemen met GitHub Pages/CORS te voorkomen.
+const rawAppData = {
+  "levels": [
+    {
+      "id": "vmbo_tl",
+      "name": "VMBO-TL",
+      "common_subjects": ["Nederlands", "Engels", "Maatschappijleer", "Profielwerkstuk"],
+      "profiles": [
+        {
+          "name": "Economie",
+          "mandatory_subjects": ["Economie"],
+          "profile_choice": {
+            "amount": 1,
+            "options": ["Wiskunde", "Frans", "Duits"]
+          },
+          "exam_choice": {
+            "amount": 2,
+            "options": ["Biologie", "Geschiedenis", "NaSk 1", "Wiskunde", "Aardrijkskunde", "Frans", "Duits"]
+          }
+        },
+        {
+          "name": "Landbouw",
+          "mandatory_subjects": ["Wiskunde"],
+          "profile_choice": {
+            "amount": 1,
+            "options": ["Biologie", "NaSk 1"]
+          },
+          "exam_choice": {
+            "amount": 2,
+            "options": ["Biologie", "Aardrijkskunde", "Geschiedenis", "NaSk 1", "Economie", "Frans", "Duits"]
+          }
+        },
+        {
+          "name": "Techniek",
+          "mandatory_subjects": ["Wiskunde", "NaSk 1"],
+          "profile_choice": {
+            "amount": 0,
+            "options": []
+          },
+          "exam_choice": {
+            "amount": 2,
+            "options": ["Biologie", "Aardrijkskunde", "Geschiedenis", "Economie", "Frans", "Duits"]
+          }
+        },
+        {
+          "name": "Zorg en Welzijn",
+          "mandatory_subjects": ["Biologie"],
+          "profile_choice": {
+            "amount": 1,
+            "options": ["Wiskunde", "Aardrijkskunde", "Geschiedenis"]
+          },
+          "exam_choice": {
+            "amount": 2,
+            "options": ["Wiskunde", "Aardrijkskunde", "Geschiedenis", "NaSk 1", "Economie", "Frans", "Duits"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "havo",
+      "name": "HAVO",
+      "common_subjects": [],
+      "profiles": []
+    },
+    {
+      "id": "vwo",
+      "name": "VWO",
+      "common_subjects": [],
+      "profiles": []
+    }
+  ]
+};
+
+let appData = {};
+let currentLevel = null;
+let currentProfile = null;
+
+// Keuzes van de gebruiker bijhouden
+let userChoices = {
+    profileChoice: [],
+    examChoice: []
+};
+
+// Start de app: De data is nu direct beschikbaar
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            appData = data;
-            initLevelSelect();
-        })
-        .catch(error => {
-            console.error('Fout bij laden JSON:', error);
-            alert('Kan de data niet laden. Als je dit lokaal opent, gebruik dan een local server of Firefox.');
-        });
+    appData = rawAppData;
+    initLevelSelect();
 });
 
 function initLevelSelect() {
@@ -230,4 +305,5 @@ function updateSummary() {
     html += allSubjects.join(', ') + `</p>`;
     
     summary.innerHTML = html;
+
 }
